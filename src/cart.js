@@ -31,7 +31,7 @@ function changeQuantity(cart, productId, quantity) {
   if (!existingProduct) {
     return cart;
   };
-  
+
   if (quantity <= 0) {
     throw new RangeError('Введите количество');
   };
@@ -40,16 +40,31 @@ function changeQuantity(cart, productId, quantity) {
     throw new RangeError('Количество превышает остаток');
   };
 
-
   return cart.map((item) => (
     item.id === productId
     ? { ...item, quantity }
     : item
   ));
 
-  // return [...cart, { ...product, quantity }]; 
 }
-function removeFromCart() { return notImplemented(); }
+function removeFromCart(cart, productId) { 
+  return cart.filter((item) => item.id !== productId);
+
+  // const existingProduct = cart.find((item) => item.id === product.id);
+  // const newQuantity = (existingProduct ? existingProduct.quantity : 0) - quantity;
+
+  // if (newQuantity <= 0) {
+  //   return cart
+  // }
+
+  // if (existingProduct) {
+  //   return cart.map((item) => (
+  //     item.id === product.id
+  //     ? { ...item, quantity: newQuantity }
+  //     : item
+  //   ));
+  // };
+}
 function calculateCartSubtotal() { return notImplemented(); }
 function calculateOrderTotal() { return notImplemented(); }
 
