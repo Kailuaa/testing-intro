@@ -49,23 +49,13 @@ function changeQuantity(cart, productId, quantity) {
 }
 function removeFromCart(cart, productId) { 
   return cart.filter((item) => item.id !== productId);
-
-  // const existingProduct = cart.find((item) => item.id === product.id);
-  // const newQuantity = (existingProduct ? existingProduct.quantity : 0) - quantity;
-
-  // if (newQuantity <= 0) {
-  //   return cart
-  // }
-
-  // if (existingProduct) {
-  //   return cart.map((item) => (
-  //     item.id === product.id
-  //     ? { ...item, quantity: newQuantity }
-  //     : item
-  //   ));
-  // };
 }
-function calculateCartSubtotal() { return notImplemented(); }
+function calculateCartSubtotal(cart) { 
+  return cart.reduce (
+    (subtotal, item) => subtotal + item.price * item.quantity, 
+    0
+  );
+}
 function calculateOrderTotal() { return notImplemented(); }
 
 const cartApi = { addToCart, changeQuantity, removeFromCart, calculateCartSubtotal, calculateOrderTotal };
